@@ -11,12 +11,13 @@ import jakarta.persistence.Table;
 @Table(name = "tb_game")
 public class Game {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
-    
-    @Column(name = "game_year") // personalizou o nome da coluna para não dar problema com o nome reservado do SQL
-    private String year;
+
+    @Column(name = "game_year") // personalizou o nome da coluna para não dar problema com o nome reservado do
+                                // SQL
+    private Integer year;
     private String genre;
     private String platforms;
     private Double score;
@@ -28,9 +29,7 @@ public class Game {
     @Column(columnDefinition = "TEXT")
     private String longDescription;
 
- 
-
-    public Game(Long id, String title, String year, String genre, String platforms, Double score, String imgUrl,
+    public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
             String shortDescription, String longDescription) {
         this.id = id;
         this.title = title;
@@ -87,11 +86,11 @@ public class Game {
         this.title = title;
     }
 
-    public String getYear() {
+    public Integer  getYear() {
         return year;
     }
 
-    public void setYear(String year) {
+    public void setYear(Integer  year) {
         this.year = year;
     }
 
