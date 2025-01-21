@@ -15,18 +15,18 @@ import com.famdev.dslist.repositories.GameRepository;
 public class GameService {
 
     @Autowired
-    private GameRepository gameRepository;
+    private GameRepository repository;
 
 
     @Transactional(readOnly = true)
     public GameDTO findById(Long id) {
-        Game result = gameRepository.findById(id).get();
+        Game result = repository.findById(id).get();
         return new GameDTO(result);
     }
 
     @Transactional(readOnly = true)
     public List<GameMinDTO> findAll() {
-        List<Game> result = gameRepository.findAll();
+        List<Game> result = repository.findAll();
 
         // return result.stream().map(x -> new GameMinDTO(x)).toList();
         return result.stream().map(GameMinDTO::new).toList();

@@ -17,16 +17,16 @@ import com.famdev.dslist.services.GameService;
 public class GameController {
 
     @Autowired
-    private GameService gameService;
+    private GameService service;
 
     @GetMapping(value = "/{id}")
     public GameDTO findById(@PathVariable Long id) {
-        return gameService.findById(id);
+        return service.findById(id);
     }
 
     @GetMapping
     public List<GameMinDTO> findAll() {
-        return gameService.findAll();
+        return service.findAll();
     }
 
    
