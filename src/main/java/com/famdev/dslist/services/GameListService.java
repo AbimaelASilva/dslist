@@ -32,15 +32,15 @@ public class GameListService {
 
     @Transactional(readOnly = true)
     public void move(Long listId, int sourceIndex, int destinationIndex) {
-        List<GameMinProjection> currentList = gameRepository.searchByList(listId);
-        List<GameMinProjection> repositionedList = currentList;
+        List<GameMinProjection> list = gameRepository.searchByList(listId);
+       
 
-        GameMinProjection gameToMove = repositionedList.remove(sourceIndex);
-        repositionedList.add(destinationIndex, gameToMove);
+        GameMinProjection gameToMove = list.remove(sourceIndex);
+        list.add(destinationIndex, gameToMove);
 
-        for (int repositionedIndex = 0; repositionedIndex < repositionedList.size(); repositionedIndex++) {
+        for (int repositionedIndex = 0; repositionedIndex < list.size(); repositionedIndex++) {
 
-            gameListRepository.updateBelongingPosition(listId, repositionedList.get(repositionedIndex).getId(),
+            gameListRepository.updateBelongingPosition(listId, list.get(repositionedIndex).getId(),
                     repositionedIndex);
         }
     }
